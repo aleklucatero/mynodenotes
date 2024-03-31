@@ -17,3 +17,8 @@ app.get("/", (req, res) => {
 //Using middleware express.static(path). Intercepting HTTP req and adding info
 //Intercepting index.html and adding css
 app.use("/public", express.static(__dirname + "/public"));
+
+//Serving a json file on get
+app.get("/json", (req, res) => {
+    res.json({"message": "Hello json"});
+});
