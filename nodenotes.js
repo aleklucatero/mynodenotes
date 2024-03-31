@@ -13,3 +13,7 @@ let app = express();
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
+
+//Using middleware express.static(path). Intercepting HTTP req and adding info
+//Intercepting index.html and adding css
+app.use("/public", express.static(__dirname + "/public"));
