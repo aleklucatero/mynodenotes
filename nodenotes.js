@@ -3,6 +3,7 @@
 //Making an express file. 
 let express = require('express');
 let app = express();
+require('dotenv').config(); //Allows you to load .env variables into process.env
 
 //Serving a string
 // app.get("/", (req, res) => {
@@ -18,7 +19,12 @@ app.get("/", (req, res) => {
 //Intercepting index.html and adding css
 app.use("/public", express.static(__dirname + "/public"));
 
-//Serving a json file on get
+//Serving a json file on get, using a .env variable
+//In this example, I want to configure getting json files in all caps
 app.get("/json", (req, res) => {
-    res.json({"message": "Hello json"});
+    if (process.env.MESSAGE_STYLE === "uppercase") {
+        res.json({"message": "Hello json".toUpperCase()});
+    } else {
+        res.json({"message": "Hello json"});
+    };
 });
