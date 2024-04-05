@@ -28,3 +28,11 @@ app.get("/json", (req, res) => {
         res.json({"message": "Hello json"});
     };
 });
+
+//Setting up root middleware using .use 
+app.use(function (req, res, next) {
+    //you can access req properties. I want to serve method path - ip
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    //We then call the next function when we are done.
+    next();
+});
